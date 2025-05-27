@@ -53,7 +53,7 @@ impl MermaidParser {
                 } else if let Some(captures) = self.attribute_regex.captures(line) {
                     let raw_type = captures.get(1).unwrap().as_str();
 					let attr_type = LocoDataType::from_mermaid_type(raw_type).to_loco_type().to_string();
-					let attr_name = LocoDataType::from_mermaid_type(captures.get(2).unwrap().as_str()).to_loco_type().to_string();
+					let attr_name = captures.get(2).unwrap().as_str().to_string();
 					let is_pk = captures.get(3).is_some();
 					let is_fk = captures.get(4).is_some();
 					let is_nullable = captures.get(5).is_some();
