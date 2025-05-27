@@ -1,0 +1,51 @@
+```mermaid
+erDiagram
+    User {
+        int id PK
+        string email
+        string name
+        date_time created_at
+        date_time updated_at
+    }
+    
+    Post {
+        int id PK
+        string title
+        text content
+        int user_id FK
+        boolean published
+        date_time created_at
+        date_time updated_at
+    }
+    
+    Category {
+        int id PK
+        string name
+        string description
+        date_time created_at
+        date_time updated_at
+    }
+    
+    Tag {
+        int id PK
+        string name
+        string color
+        date_time created_at
+        date_time updated_at
+    }
+    
+    Comment {
+        int id PK
+        text content
+        int user_id FK
+        int post_id FK
+        date_time created_at
+        date_time updated_at
+    }
+    
+    User ||--o{ Post : "has many"
+    User ||--o{ Comment : "has many"  
+    Post ||--o{ Comment : "has many"
+    Post }o--|| Category : "belongs to"
+    Post }o--o{ Tag : "many to many"
+```
