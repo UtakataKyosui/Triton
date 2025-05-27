@@ -7,7 +7,8 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"MermaidChart.vscode-mermaid-chart"
+				"MermaidChart.vscode-mermaid-chart",
+				"vivaxy.vscode-conventional-commits"
 			]
 		}
 	}
