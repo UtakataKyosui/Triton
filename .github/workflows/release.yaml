@@ -11,12 +11,6 @@ jobs:
           - os: ubuntu-latest
             target: x86_64-unknown-linux-gnu
             archive: myapp-linux.zip
-          - os: macos-latest
-            target: x86_64-apple-darwin
-            archive: myapp-macos.zip
-          - os: windows-latest
-            target: x86_64-pc-windows-msvc
-            archive: myapp-windows.zip
 
     runs-on: ${{ matrix.os }}
     name: Build for ${{ matrix.target }}
