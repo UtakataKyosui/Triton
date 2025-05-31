@@ -1,14 +1,29 @@
+README を更新して、Loco Framework（Rust の Rails ライクなフレームワーク）での使用を想定していることを明記しました。
+
+## 🔄 追加した主な内容
+
+**Loco Framework 関連の情報:**
+
+- プロジェクト概要に Loco Framework での使用想定を明記
+- 主な機能に Loco Framework 統合を追加
+- Loco 専用のセクションを新設し、典型的なワークフローを説明
+- Loco プロジェクト構造との互換性を図示
+- 謝辞に Loco Framework を追加
+
+**実用的なワークフロー:**
+
 # 🔱 Triton
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Rust](https://img.shields.io/badge/rust-1.70+-orange.svg)](https://www.rust-lang.org/)
 [![Build Status](https://img.shields.io/badge/build-passing-green.svg)]()
 
-**Triton** は、Mermaid 形式で記述された Entity-Relationship Diagram (ER 図) を解析し、SeaORM マイグレーションファイルの生成・管理を行う強力な CLI ツールです。データベーススキーマ設計から実装まで、開発ワークフローを大幅に効率化します。
+**Triton** は、Mermaid 形式で記述された Entity-Relationship Diagram (ER 図) を解析し、SeaORM マイグレーションファイルの生成・管理を行う強力な CLI ツールです。特に **Loco Framework**（Rust の Rails ライクな Web フレームワーク）での開発を想定して設計されており、データベーススキーマ設計から実装まで、モダンな Rust Web 開発のワークフローを大幅に効率化します。
 
 ## ✨ 主な機能
 
 - 🎨 **Mermaid ER → SeaORM マイグレーション変換**: Mermaid 形式の ER 図から SeaORM マイグレーションファイルを自動生成
+- 🚂 **Loco Framework 統合**: Loco（Rust の Rails ライク）プロジェクトでの使用に最適化
 - 🔧 **マイグレーション管理**: 既存のマイグレーションファイルに対するカラムの追加・削除
 - 📊 **スキーマ可視化**: マイグレーションファイルの内容をわかりやすく表示
 - 🚀 **直感的な CLI**: clap ベースの使いやすいコマンドライン体験
@@ -42,14 +57,14 @@ triton --help
 
 ### 🎨 Generate コマンド - Mermaid ER からマイグレーション生成
 
-Mermaid 形式の ER 図から SeaORM マイグレーションファイルを生成します。
+Mermaid 形式の ER 図から SeaORM マイグレーションファイルを生成します。Loco Framework プロジェクトでの使用を想定しており、`src/migrations/` ディレクトリに配置するのに適した形式で出力されます。
 
 ```bash
 # 標準出力に表示
 triton generate --input diagram.mermaid
 
-# ファイルに出力
-triton generate --input diagram.mermaid --output migration.rs
+# Locoプロジェクトのマイグレーションディレクトリに出力
+triton generate --input diagram.mermaid --output src/migrations/m20240101_000001_create_tables.rs
 ```
 
 #### Mermaid ER 図の例
@@ -139,6 +154,28 @@ triton migration list --file src/migrations/m20240101_000001_create_users.rs --t
 
 ```bash
 triton migration info --file src/migrations/m20240101_000001_create_users.rs
+```
+
+## 🚂 Loco Framework との連携
+
+Triton は Loco Framework（Rust の Rails ライクな Web フレームワーク）での開発体験を向上させるために設計されています。
+
+### Loco プロジェクトでの典型的なワークフロー
+
+1. **スキーマ設計**: Mermaid 形式で ER 図を作成
+2. **マイグレーション生成**: Triton で SeaORM マイグレーションファイルを生成
+3. **プロジェクトへの配置**: `src/migrations/` ディレクトリに配置
+4. **マイグレーション実行**: Loco の `cargo loco db migrate` コマンドで適用
+
+```bash
+# 1. ER図からマイグレーション生成
+triton generate --input schema.mermaid --output src/migrations/m20240101_000001_create_users_posts.rs
+
+# 2. Locoでマイグレーション実行
+cargo loco db migrate
+
+# 3. 必要に応じてカラム追加
+triton migration add-column --file src/migrations/m20240101_000001_create_users_posts.rs --table users --column avatar_url --column-type string --nullable true
 ```
 
 ## 📚 サポートする型
@@ -255,6 +292,7 @@ chore: その他の変更
 
 ## 🙏 謝辞
 
+- [Loco Framework](https://loco.rs/) - Rust の Rails ライクな素晴らしい Web フレームワーク
 - [SeaORM](https://github.com/SeaQL/sea-orm) - 優れた Rust ORM
 - [Mermaid](https://mermaid.js.org/) - 美しい図表作成ツール
 - [clap](https://github.com/clap-rs/clap) - Rust の素晴らしい CLI ライブラリ
@@ -262,3 +300,9 @@ chore: その他の変更
 ---
 
 **Triton**で、データベース設計から実装までの開発体験を向上させましょう！ 🚀
+
+- Mermaid ER 図設計から Loco でのマイグレーション実行までの手順を明示
+- `src/migrations/` ディレクトリへの適切な配置方法
+- `cargo loco db migrate` コマンドとの連携
+
+これにより、Loco Framework ユーザーが自分たちのワークフローに Triton をどのように組み込めるかが明確に理解できるようになりました。Rails ライクな Rust 開発体験の向上を目指すプロジェクトとして、より魅力的に紹介されています。
