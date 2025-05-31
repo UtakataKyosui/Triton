@@ -1,7 +1,7 @@
-pub mod parser;
 pub mod generator;
+pub mod parser;
 pub mod types;
 
-pub use parser::MermaidParser;
 pub use generator::LocoGenerator;
+pub use parser::MermaidParser;
 pub use types::*;

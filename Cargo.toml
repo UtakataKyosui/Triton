@@ -25,3 +25,15 @@ regex = "1.0"
 # ログ出力（オプション）
 log = "0.4"
 env_logger = "0.10"
+
+[dev-dependencies]
+# テスト用の依存関係
+assert_cmd = "2.0"        # CLIテスト用
+predicates = "3.0"        # アサーション用
+tempfile = "3.0"          # 一時ファイル作成用
+serial_test = "3.0"       # シーケンシャルテスト実行用
+pretty_assertions = "1.0" # 詳細なアサーション
+
+[[bin]]
+name = "triton"
+path = "src/main.rs"
